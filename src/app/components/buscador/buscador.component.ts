@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroesService, Heroe } from '../../servicios/heroes.service';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscador',
@@ -10,23 +9,16 @@ import { Router } from '@angular/router';
 })
 export class BuscadorComponent implements OnInit {
 
-  heroes:Heroe[] = [];
-  nombre:string ="";
+  heroes: Heroe[] = [];
+  nombre = '';
 
-  constructor(private _heroesService:HeroesService, private avtivateRoute: ActivatedRoute, private _router:Router) { }
+  constructor(private _heroesService: HeroesService, private avtivateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
       this.avtivateRoute.params.subscribe( params => {
-      this.nombre = params['nombre'];
+      this.nombre = params.nombre;
       this.heroes = this._heroesService.buscarHeroes(this.nombre);
     });
-    
   }
-  
-  verHeroe (id: number){
-    this._router.navigate(['/heroe/',id]);
-  }
-
-
 }

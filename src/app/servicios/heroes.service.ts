@@ -72,27 +72,42 @@ buscarHeroes (termino:string) :Heroe[] {
   let heroesArr:Heroe[] = [];
 
   termino = termino.toLocaleLowerCase();
-  
-  
 
-  for (let heroe of this.heroes) {
-    let nombre  =heroe.nombre.toLowerCase();
-    console.log(nombre + ' ' + termino + ' indexOf: ' + nombre.indexOf(termino));
+  // for (let heroe of this.heroes; index) {
+  //   let nombre  =heroe.nombre.toLowerCase();
+  //   if(nombre.indexOf(termino)>=0)
+  //   {
+  //     heroesArr.push(heroe);
+  //   }
+  // }
+
+  for (let index = 0; index < this.heroes.length; index++) {
+    let heroe = this.heroes[index];
+
+    let nombre  = heroe.nombre.toLowerCase();
+    
+    heroe.idx = index;
+
     if(nombre.indexOf(termino)>=0)
     {
+
       heroesArr.push(heroe);
-      console.log(termino);
     }
+    
   }
+
+
+
   return heroesArr;
 }
 
 }
 
 export interface Heroe{
-    nombre:string;
-    bio:string;
-    img:string;
-    aparicion:string;
-    casa:string;
+    nombre: string;
+    bio: string;
+    img: string;
+    aparicion: string;
+    casa: string;
+    idx?: number;
 }
